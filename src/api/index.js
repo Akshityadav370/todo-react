@@ -1,6 +1,6 @@
 const todoURL = "https://jsonplaceholder.typicode.com/todos";
 
-// Getting all tasks
+// Getting all tasks (READ)
 export const allTasks = async () => {
   try {
     const response = await fetch(todoURL, {
@@ -19,7 +19,7 @@ export const allTasks = async () => {
   }
 };
 
-// Creating a task
+// Creating a task (CREATE)
 export const createTask = async (todo) => {
   try {
     const response = await fetch(todoURL, {
@@ -28,6 +28,34 @@ export const createTask = async (todo) => {
         title: todo.title,
         completed: todo.completed,
         userId: todo.userId,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("API call failed!");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error("API call error", error);
+  }
+};
+
+// Updating a task (UPDATE)
+export const updateTask = async (id, newTodo) => {
+  try {
+    const response = await fetch(`${todoURL}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: newTodo.title, 
+        userId: newTodo.userId,
+        completed: newTodo.completed,
+        id
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
