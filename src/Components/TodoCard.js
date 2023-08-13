@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "../Styles/TodoCard.css"; // Import the stylesheet for the TodoCard
-import { updateTask } from "../api";
+import { deleteTask, updateTask } from "../api";
 
 function TodoCard({ todo }) {
   const [existingTodo, setExistingTodo] = useState(todo);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTodo, setEditedTodo] = useState({ ...todo });
+  const [deleted, setDeleted] = useState(false);
   const cardRef = useRef(null);
 
   const handleInputChange = (event) => {
@@ -26,6 +27,14 @@ function TodoCard({ todo }) {
     setIsEditing(false);
   };
 
+  const handleDelete = async () => {
+
+    const response = await deleteTask(todo.id);
+    console.log(response);
+
+    setDeleted(true);
+  }
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
@@ -40,7 +49,9 @@ function TodoCard({ todo }) {
     };
   }, []);
 
-  return (
+  
+
+  return deleted ? <div></div> : (
     <div
       className={`todo-card ${isEditing ? "editing" : ""} ${
         existingTodo.completed ? "completed" : ""
@@ -94,7 +105,7 @@ function TodoCard({ todo }) {
             <button className="update-button" onClick={handleUpdate}>
               Update
             </button>
-            <button className="delete-button">Delete</button>
+            <button className="delete-button" onClick={handleDelete}>Delete</button>
           </>
         ) : (
           <button className="edit-button" onClick={() => setIsEditing(true)}>

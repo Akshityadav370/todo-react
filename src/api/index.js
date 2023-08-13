@@ -52,14 +52,33 @@ export const updateTask = async (id, newTodo) => {
     const response = await fetch(`${todoURL}/${id}`, {
       method: "PUT",
       body: JSON.stringify({
-        title: newTodo.title, 
+        title: newTodo.title,
         userId: newTodo.userId,
         completed: newTodo.completed,
-        id
+        id,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
+    });
+
+    if (!response.ok) {
+      throw new Error("API call failed!");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error("API call error", error);
+  }
+};
+
+// Deleting a task (DELETE)
+export const deleteTask = async (id) => {
+  try {
+    const response = await fetch(`${todoURL}/${id}`, {
+      method: "DELETE",
     });
 
     if (!response.ok) {
