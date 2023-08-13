@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/akshityadav370.github.io/todo-react/static/css/main.2c4a6c4b.css",
-    "main.js": "/akshityadav370.github.io/todo-react/static/js/main.5660b75b.js",
-    "index.html": "/akshityadav370.github.io/todo-react/index.html",
-    "main.2c4a6c4b.css.map": "/akshityadav370.github.io/todo-react/static/css/main.2c4a6c4b.css.map",
-    "main.5660b75b.js.map": "/akshityadav370.github.io/todo-react/static/js/main.5660b75b.js.map"
+    "main.css": "./static/css/main.2c4a6c4b.css",
+    "main.js": "./static/js/main.5660b75b.js",
+    "index.html": "./index.html",
+    "main.2c4a6c4b.css.map": "./static/css/main.2c4a6c4b.css.map",
+    "main.5660b75b.js.map": "./static/js/main.5660b75b.js.map"
   },
   "entrypoints": [
     "static/css/main.2c4a6c4b.css",
