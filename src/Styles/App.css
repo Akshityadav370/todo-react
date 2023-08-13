@@ -15,3 +15,42 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
 }
+/* App.css */
+
+.add-todo {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Added this line */
+}
+
+.add-todo input[type="number"],
+.add-todo input[type="text"] {
+  flex: 1; /* Added this line */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-todo label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.add-todo button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-todo button:hover {
+  background-color: #2980b9;
+}

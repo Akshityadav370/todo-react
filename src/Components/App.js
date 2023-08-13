@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import TodoCard from './TodoCard';
 import UserSelector from './UserSelector';
 import '../Styles/App.css'; // Import the main stylesheet for the app
+import { allTasks } from '../api';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -16,22 +17,27 @@ function App() {
   });
 
   useEffect(() => {
-    // Fetch users and todos from an API or any other data source
-    // For demonstration purposes, we're using static data here
     const staticUsers = [
       { id: 1, name: 'User 1' },
       { id: 2, name: 'User 2' },
-      // Add more users
+      { id: 3, name: 'User 3' },
+      { id: 4, name: 'User 4' },
+      { id: 5, name: 'User 5' },
+      { id: 6, name: 'User 6' },
+      { id: 7, name: 'User 7' },
+      { id: 8, name: 'User 8' },
+      { id: 9, name: 'User 9' },
+      { id: 10, name: 'User 10' },
     ];
 
-    const staticTodos = [
-      { userId: 1, id: 1, title: 'Learn React', completed: false },
-      { userId: 2, id: 2, title: 'Build a Todo App', completed: true },
-      // Add more todos
-    ];
+    const getAllTasks = async () => {
+      const response = await allTasks();
+      console.log(response);
+      setTodos(response);
+    }
 
+    getAllTasks();
     setUsers(staticUsers);
-    setTodos(staticTodos);
   }, []);
 
   const filteredTodos = selectedUser
