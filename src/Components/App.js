@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import TodoCard from './TodoCard';
 import UserSelector from './UserSelector';
 import '../Styles/App.css'; // Import the main stylesheet for the app
-import { allTasks } from '../api';
+import { allTasks, createTask } from '../api';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -32,7 +32,7 @@ function App() {
 
     const getAllTasks = async () => {
       const response = await allTasks();
-      console.log(response);
+      // console.log(response);
       setTodos(response);
     }
 
@@ -44,15 +44,11 @@ function App() {
     ? todos.filter(todo => todo.userId === parseInt(selectedUser))
     : todos;
 
-  const handleAddTodo = () => {
-    // Logic to add the new todo to the list
-    // For demonstration purposes, we're not implementing the actual addition
-    console.log('New Todo:', newTodo);
-    setNewTodo({
-      userId: '',
-      title: '',
-      completed: false,
-    });
+  const handleAddTodo = async () => {
+    
+      const response = await createTask(newTodo);
+      console.log('New Todo:', response);
+      setTodos([newTodo, ...todos]);
   };
 
   return (
